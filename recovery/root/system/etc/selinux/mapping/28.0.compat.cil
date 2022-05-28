@@ -1,0 +1,11 @@
+(typeattribute vendordomain)
+(typeattributeset vendordomain ((and (domain) ((not (coredomain))))))
+(allowx vendordomain dev_type (ioctl blk_file ((range 0x0000 0xffff))))
+(allowx vendordomain file_type (ioctl file ((range 0x0000 0xffff))))
+(allow vendordomain self (netlink_route_socket (nlmsg_readpriv)))
+
+(typeattributeset mlsvendorcompat (and appdomain vendordomain))
+(allow mlsvendorcompat app_data_file (dir (ioctl read write create getattr setattr lock rename open watch watch_reads add_name remove_name reparent search rmdir)))
+(allow mlsvendorcompat app_data_file (file (ioctl read write create getattr setattr lock append map unlink rename open watch watch_reads)))
+(allow mlsvendorcompat privapp_data_file (dir (ioctl read write create getattr setattr lock rename open watch watch_reads add_name remove_name reparent search rmdir)))
+(allow mlsvendorcompat privapp_data_file (file (ioctl read write create getattr setattr lock append map unlink rename open watch watch_reads)))

@@ -1,0 +1,19 @@
+# One shot invocation to deal with encrypted volume.
+on defaultcrypto
+    exec - root -- /system/bin/vdc --wait cryptfs mountdefaultencrypted
+    # vold will set vold.decrypt to trigger_restart_framework (default
+    # encryption) or trigger_restart_min_framework (other encryption)
+
+# One shot invocation to encrypt unencrypted volumes
+on encrypt
+    start surfaceflinger
+    exec - root -- /system/bin/vdc --wait cryptfs enablecrypto
+    # vold will set vold.decrypt to trigger_restart_framework (default
+    # encryption)
+
+# Gc Booster Control
+on property:persist.sys.gc_booster.enable=0
+    exec - root -- /system/bin/vdc gcBoosterControl 0
+
+on property:persist.sys.gc_booster.enable=1
+    exec - root -- /system/bin/vdc gcBoosterControl 1
