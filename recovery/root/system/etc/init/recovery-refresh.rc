@@ -1,2 +1,0 @@
-on post-fs
-    exec_background - system log -- /system/bin/recovery-refresh

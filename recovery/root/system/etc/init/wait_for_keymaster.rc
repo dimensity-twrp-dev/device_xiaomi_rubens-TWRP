@@ -1,5 +1,0 @@
-service wait_for_keymaster /system/bin/wait_for_keymaster
-    user root
-    group root system
-    priority -20
-    ioprio rt 0

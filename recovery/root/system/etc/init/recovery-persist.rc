@@ -1,3 +1,0 @@
-on post-fs-data
-    mkdir /data/misc/recovery 0770 system log
-    exec_background - system log -- /system/bin/recovery-persist

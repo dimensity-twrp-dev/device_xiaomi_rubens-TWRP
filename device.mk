@@ -16,9 +16,6 @@
 
 LOCAL_PATH := device/xiaomi/rubens
 
-TARGET_SCREEN_HEIGHT := 3200
-TARGET_SCREEN_WIDTH := 1440
-
 # API
 PRODUCT_SHIPPING_API_LEVEL := 31
 
@@ -45,6 +42,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_system=true \
+    POSTINSTALL_PATH_system=system/bin/mtk_plpath_utils \
+    FILESYSTEM_TYPE_system=ext4 \
+    POSTINSTALL_OPTIONAL_system=true
+
 # Boot control HAL
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl-1.2-mtkimpl.recovery \
@@ -55,7 +58,7 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # Fastbootd
 PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl-mock \
+    android.hardware.fastboot@1.1-impl-mock \
     fastbootd
 
 # Rootdir
@@ -67,14 +70,10 @@ PRODUCT_PACKAGES += \
 TARGET_RECOVERY_DEVICE_MODULES += \
     libkeymaster4 \
     libpuresoftkeymasterdevice \
-    ashmemd_aidl_interface-cpp \
-    libashmemd_client
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so    
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \

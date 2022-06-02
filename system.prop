@@ -1,7 +1,2 @@
-ro.mediatek.platform=MT6895
-ro.hardware=mt6895
-ro.board.platform=mt6895
-ro.mtk_gwsd_support=1
-ro.mtk_f2fs_enable=1
-ro.mtk_slow_motion_support=1
-ro.mtk_tee_gp_support=1
+ro.sys.usb.storage.type=mtp
+ro.vendor.mtk_tee_gp_support=1
