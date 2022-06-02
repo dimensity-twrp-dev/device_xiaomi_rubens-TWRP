@@ -40,8 +40,8 @@
 #include <android-base/logging.h>
 
 #if !defined(ARCH_X86)
-#include <linux/mmc/mmc-mtk-ioctl.h>
-#include <linux/scsi/ufs/ufs-mtk-ioctl.h>
+#include <mmc-mtk-ioctl.h>
+#include <ufs-mtk-ioctl.h>
 #include <sys/ioctl.h>
 #endif
 
