@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2021 The TWRP Open Source Project
+# Copyright (C) 2022 The TWRP Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,47 +31,4 @@ PRODUCT_NAME := twrp_rubens
 PRODUCT_BRAND := Redmi
 PRODUCT_MODEL := 22041211AC
 PRODUCT_MANUFACTURER := Xiaomi
-
-# API
-PRODUCT_SHIPPING_API_LEVEL := 31
-
-# Dynamic
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
-# A/B
-ENABLE_VIRTUAL_AB := true
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
-
-# A/B
-AB_OTA_UPDATER := true
-AB_OTA_PARTITIONS := boot system system_ext product vendor vendor_boot
-
-PRODUCT_PACKAGES += \
-    update_engine \
-    update_engine_sideload \
-    update_verifier
-
-# Boot control HAL
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-impl.recovery \
-    android.hardware.boot@1.2-service \
-    android.hardware.boot@1.2-impl \
-    bootctrl.mt6895.recovery
-
-# fastbootd
-PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.1-impl-mock \
-    fastbootd
-    
-# Additional target Libraries
-TARGET_RECOVERY_DEVICE_MODULES += \
-    libkeymaster4 \
-    libpuresoftkeymasterdevice \
-    ashmemd_aidl_interface-cpp \
-    libashmemd_client
-
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so    
+PRODUCT_RELEASE_NAME := Redmi K50

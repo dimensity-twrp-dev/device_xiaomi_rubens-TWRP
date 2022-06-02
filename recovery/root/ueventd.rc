@@ -1,82 +1,208 @@
-import /vendor/etc/ueventd.rc
-import /odm/etc/ueventd.rc
+#change partition permission
+# eMMC only
+/dev/block/mmcblk0                               0660    root    system
+/dev/block/mmcblk0boot0                          0660    root    system
+/dev/block/mmcblk0boot1                          0660    root    system
+/dev/misc-sd                                     0660    root    system
 
-firmware_directories /etc/firmware/ /odm/firmware/ /vendor/firmware/ /firmware/image/
-uevent_socket_rcvbuf_size 16M
+# UFS only
+/dev/block/sda                                   0660    root    system
+/dev/block/sdb                                   0660    root    system
+/dev/block/sdc                                   0660    root    system
 
-subsystem graphics
+# eMMC/UFS common
+/dev/block/by-name/misc2     0660    root    system
+/dev/block/by-name/boot      0640    root    system
+/dev/block/by-name/recovery  0640    root    system
+/dev/block/by-name/secro     0640    root    system
+/dev/block/by-name/seccfg    0660    root    system
+/dev/block/by-name/proinfo   0660    root    system
+/dev/block/by-name/nvram     0660    root    system
+/dev/block/by-name/para      0660    root    system
+/dev/block/by-name/logo_a    0660    root    system
+/dev/block/by-name/logo_b    0660    root    system
+/dev/block/by-name/frp       0660    root    system
+/dev/block/by-name/md1img    0640    root    system
+/dev/block/by-name/md1img_a  0640    root    system
+/dev/block/by-name/md1img_b  0640    root    system
+/dev/block/by-name/md1dsp    0660    root    system
+/dev/block/by-name/boot_para 0640    root    system
+
+# OTP
+/dev/otp                  0660   system     system
+/dev/block/by-name/otp       0660    root    system
+
+# Connectivity
+/dev/stpwmt               0660   system     system
+/dev/wmtdetect            0660   system     system
+/dev/fw_log_wmt           0660   system     system
+/dev/fw_log_wifimcu       0660   system     system
+/dev/fw_log_btmcu         0660   system     system
+/dev/conninfra_dev        0660   system     system
+/dev/conn_scp_dev         0660   system     system
+
+# BT
+/dev/stpbt                0660   bluetooth  bluetooth
+/dev/fw_log_bt            0660   bluetooth  bluetooth
+
+# GPS
+/dev/gpsdl0               0660   gps        gps
+/dev/gpsdl1               0660   gps        gps
+/dev/stpgps               0660   gps        gps
+/dev/gps                  0660   gps        system
+/dev/gps_emi              0660   gps        gps
+/dev/gps2scp              0660   gps        gps
+/dev/gps_pwr              0660   gps        gps
+
+# ANT
+/dev/stpant               0660   system     system
+
+# WIFI
+/dev/wmtWifi              0660   wifi     wifi
+/dev/fw_log_wifi          0660   wifi     wifi
+/dev/fw_log_ics	          0660   wifi     wifi
+
+# FMRadio
+/dev/fm                   0660   media     media
+
+# NFC
+/dev/st21nfc              0660   nfc        radio
+/dev/st54spi              0660   secure_element        secure_element
+
+# MTK BTIF driver
+/dev/btif                 0600   system     system
+
+# Trusty driver
+/dev/trusty-ipc-dev0      0660   system     system
+/dev/nebula-ipc-dev0      0660   system     system
+
+# RPMB (for Trusty)
+/dev/block/mmcblk0rpmb    0660   root       system
+
+# TrustonicTEE driver
+/dev/mobicore             0600   system     system
+/dev/mobicore-user        0666   system     system
+/dev/t-base-tui           0666   system     system
+
+# teeperf driver
+/dev/teeperf              0666   system     system
+
+#v4l2 device
+/dev/video*      0660 camera system
+/dev/media*      0660 camera system
+/dev/v4l-subdev* 0660 camera system
+
+#v4l2 codec
+/dev/vcu    0660 camera system
+
+#v4l2 camera
+/dev/mtk_hcp     0660 camera system
+
+# DRM node
+/dev/dri/card0            0660   system     system
+
+# MDDP node
+/dev/mddp                 0660   system     system
+
+# add the read write right of ttyUSB*
+/dev/bus/usb/*     	  0660   root       usb
+/dev/ttyUSB0              0660   radio      radio
+/dev/ttyUSB1              0660   radio      radio
+/dev/ttyUSB2              0660   radio      radio
+/dev/ttyUSB3              0660   radio      radio
+/dev/ttyUSB4              0660   radio      radio
+
+# Anyone can read the logs, but if they're not in the "logs"
+# group, then they'll only see log entries for their UID.
+/dev/log/ksystem          0600   root       log
+
+/dev/ccci*                0660   radio      radio
+/dev/ttyC*                0660   radio      radio
+/sys/kernel/ccci          modem_info   0644   radio       radio
+/sys/kernel/ccci          md1_postfix  0644   radio       radio
+/sys/kernel/ccci          md2_postfix  0644   radio       radio
+/dev/eemcs*               0660   radio      radio
+/dev/emd*                 0660   radio      radio
+/dev/ccci_pcm_rx          0660   audio      audio
+/dev/ccci_pcm_tx          0660   audio      audio
+/dev/ccci_aud             0660   audio      audio
+/dev/ccci2_aud            0660   audio      audio
+/dev/ccci3_aud            0660   audio      audio
+/dev/ccci_raw_audio            0660   audio      audio
+/dev/ccci3_raw_audio            0660   audio      audio
+/dev/eemcs_aud            0660   audio      audio
+/dev/irtx                 0660   system     system
+/dev/ir-learning          0660   system     system
+# SGX device node
+/dev/pvrsrvkm             0666   root       root
+/dev/pvr_sync             0666   root       root
+
+
+/sys/devices/platform/leds-mt65xx/leds/green   delay_on      0664  system   system
+/sys/devices/platform/leds-mt65xx/leds/green   delay_off      0664  system   system
+/sys/devices/platform/leds-mt65xx/leds/red   delay_on      0664  system   system
+/sys/devices/platform/leds-mt65xx/leds/red   delay_off      0664  system   system
+/sys/devices/platform/leds-mt65xx/leds/blue   delay_on      0664  system   system
+/sys/devices/platform/leds-mt65xx/leds/blue   delay_off      0664  system   system
+
+#GPIO
+/dev/mtgpio               0600   radio      root
+
+# Camera
+/dev/camera_eeprom*       0660   system     camera
+
+#FOR VIA MODEM
+/dev/ttySDIO*             0660   radio      sdcard_rw
+/dev/ttyRB*               0660   radio      radio
+
+# Mali node
+/dev/mali0                0666   system     graphics
+
+# Change ION driver permission
+/dev/ion                  0666   system     graphics
+
+# Change DMA_HEAP deice permission
+#     refs: /system/core/rootdir/uevent.rc
+#           /dev/dma_heap/system      0444   system     system
+/dev/dma_heap/mtk_mm                        0444   system     system
+/dev/dma_heap/mtk_mm-uncached               0444   system     system
+/dev/dma_heap/mtk_svp_page-uncached                 0444   system     system
+/dev/dma_heap/mtk_prot_page-uncached                0444   system     system
+/dev/dma_heap/mtk_svp_region                        0444   system     system
+/dev/dma_heap/mtk_svp_region-aligned                0444   system     system
+/dev/dma_heap/mtk_prot_region                       0444   system     system
+/dev/dma_heap/mtk_prot_region-aligned               0444   system     system
+/dev/dma_heap/mtk_2d_fr_region                      0444   system     system
+/dev/dma_heap/mtk_2d_fr_region-aligned              0444   system     system
+/dev/dma_heap/mtk_wfd_region                        0444   system     system
+/dev/dma_heap/mtk_wfd_region-aligned                0444   system     system
+/dev/dma_heap/mtk_wfd_page-uncached                 0444   system     system
+/dev/dma_heap/mtk_sapu_data_shm_region              0444   system     system
+/dev/dma_heap/mtk_sapu_data_shm_region-aligned      0444   system     system
+/dev/dma_heap/mtk_sapu_engine_shm_region            0444   system     system
+/dev/dma_heap/mtk_sapu_engine_shm_region-aligned    0444   system     system
+
+#touch
+/dev/touch                0660   root       system
+/dev/hotknot              0660   root       system
+
+#hang_detect
+/dev/RT_Monitor           0660   system     system
+/dev/kick_powerkey        0660   system     system
+
+#MTK In-House TEE
+/dev/ttyACM0              0660   radio      radio
+
+#CCU
+/dev/ccu*      0660 system camera
+
+# xiaomi display feature
+subsystem mi_display
     devname uevent_devpath
-    dirname /dev/graphics
+    dirname /dev/mi_display
 
-subsystem drm
-    devname uevent_devpath
-    dirname /dev/dri
+/dev/mi_display/*         0660   system       graphics
 
-subsystem input
-    devname uevent_devpath
-    dirname /dev/input
-
-subsystem sound
-    devname uevent_devpath
-    dirname /dev/snd
-
-subsystem dma_heap
-   devname uevent_devpath
-   dirname /dev/dma_heap
-# ueventd can only set permissions on device nodes and their associated
-# sysfs attributes, not on arbitrary paths.
-#
-# format for /dev rules: devname mode uid gid
-# format for /sys rules: nodename attr mode uid gid
-# shortcut: "mtd@NN" expands to "/dev/mtd/mtdNN"
-
-/dev/null                 0666   root       root
-/dev/zero                 0666   root       root
-/dev/full                 0666   root       root
-/dev/ptmx                 0666   root       root
-/dev/tty                  0666   root       root
-/dev/random               0666   root       root
-/dev/urandom              0666   root       root
-/dev/ashmem*              0666   root       root
-/dev/binder               0666   root       root
-/dev/hwbinder             0666   root       root
-/dev/vndbinder            0666   root       root
-
-/dev/pmsg0                0222   root       log
-/dev/dma_heap/system      0444   system     system
-/dev/dma_heap/system-uncached      0444   system     system
-/dev/dma_heap/system-secure        0444   system     system
-
-# kms driver for drm based gpu
-/dev/dri/*                0666   root       graphics
-
-# these should not be world writable
-/dev/uhid                 0660   uhid       uhid
-/dev/uinput               0660   uhid       uhid
-/dev/rtc0                 0640   system     system
-/dev/tty0                 0660   root       system
-/dev/graphics/*           0660   root       graphics
-/dev/input/*              0660   root       input
-/dev/v4l-touch*           0660   root       input
-/dev/snd/*                0660   system     audio
-/dev/bus/usb/*            0660   root       usb
-/dev/mtp_usb              0660   root       mtp
-/dev/usb_accessory        0660   root       usb
-/dev/tun                  0660   system     vpn
-
-# CDMA radio interface MUX
-/dev/ppp                  0660   radio      vpn
-
-# Virtualisation is managed by Virt Manager
-/dev/kvm                  0600   virtmanager root
-/dev/vhost-vsock          0600   virtmanager root
-
-# sysfs properties
-/sys/devices/platform/trusty.*      trusty_version        0440  root   log
-/sys/devices/virtual/input/input*   enable      0660  root   input
-/sys/devices/virtual/input/input*   poll_delay  0660  root   input
-/sys/devices/virtual/usb_composite/*   enable      0664  root   system
-/sys/devices/system/cpu/cpu*   cpufreq/scaling_max_freq   0664  system system
-/sys/devices/system/cpu/cpu*   cpufreq/scaling_min_freq   0664  system system
-/sys/devices/virtual/misc/uhid/*/leds/* brightness   0664  system system
-/sys/devices/virtual/misc/uhid/*/leds/* multi_intensity   0664  system system
+#elliptic sensor
+/dev/elliptic0            0644   system     system
+/dev/elliptic1            0644   system     system
