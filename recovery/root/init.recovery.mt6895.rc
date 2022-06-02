@@ -10,6 +10,7 @@ on fs && property:ro.debuggable=0
     # set charging free due to it wait for USB activation
 
 on post-fs
+    start boot-hal-1-2
     start mtk.plpath.utils.link
 
     # Support A/B feature for UFS boot region
@@ -33,3 +34,6 @@ service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
     oneshot
     disabled
     seclabel u:r:recovery:s0
+
+on boot
+    start health-hal-2-1
