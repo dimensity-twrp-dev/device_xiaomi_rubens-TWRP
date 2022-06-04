@@ -1,3 +1,20 @@
-# device_xiaomi_rubens-TWRP
+### [WIP] TWRP device tree for Redmi K50 (rubens)
 
-[WIP] 注意：本项目编译出的 vendor_boot 目前还不能成功启动！
+=========================================
+
+The Redmi K50 (codenamed _"rubens"_) is a high-end smartphone from Xiaomi.
+
+It was released in March 2022.
+
+## Device specifications
+
+Basic   | Spec Sheet
+-------:|:-------------------------
+CPU     | Octa-core CPU with 4x Arm Cortex-A78 up to 2.85GHz
+Chipset | Mediatek Dimensity 8100
+GPU     | Mali-G610 MC6
+Memory  | 6/8 GB RAM
+Shipped Android Version | 12
+Storage | 128/256 GB
+Battery | 5500 mAh
+Display | 1440 x 3200 pixels, 6.67 inches
