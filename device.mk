@@ -36,8 +36,12 @@ AB_OTA_PARTITIONS := \
     vbmeta \
     vbmeta_system \
     vbmeta_vendor
+<<<<<<< HEAD
     
     
+=======
+
+>>>>>>> daa509b094394504b300751956e49d45c8d223b3
 # Update engine
 PRODUCT_PACKAGES += \
     update_engine \
@@ -52,6 +56,7 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
+<<<<<<< HEAD
     android.hardware.boot@1.0-impl \
     android.hardware.boot@1.2-impl \
     android.hardware.boot@1.2-service \
@@ -62,6 +67,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-service \
     android.hardware.health@2.1-impl
+=======
+    android.hardware.boot@1.1-impl.recovery
+>>>>>>> daa509b094394504b300751956e49d45c8d223b3
 
 # Fastbootd
 PRODUCT_PACKAGES += \
