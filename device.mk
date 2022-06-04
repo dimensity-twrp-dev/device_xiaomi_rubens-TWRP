@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/xiaomi/rubens
-
 # API
 PRODUCT_SHIPPING_API_LEVEL := 31
 
@@ -35,12 +33,7 @@ AB_OTA_PARTITIONS := \
 
 # Update engine
 PRODUCT_PACKAGES += \
-    update_engine \
-    update_engine_sideload \
-    update_verifier
-
-PRODUCT_PACKAGES_DEBUG += \
-    update_engine_client
+    update_engine_sideload
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -50,28 +43,17 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl-1.2-mtkimpl.recovery \
-    android.hardware.boot@1.0-impl-1.2-mtkimpl
+    bootctrl.default \
+    android.hardware.boot@1.2-impl \
+    android.hardware.boot@1.2-service \
+    android.hardware.boot@1.2.recovery
 
-# Fastbootd
+# fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.1-impl-mock \
     fastbootd
 
-# Rootdir
+# Heath hal
 PRODUCT_PACKAGES += \
-    init.recovery.mt6895.rc \
-    init.recovery.usb.rc \
-
-# Additional target Libraries
-TARGET_RECOVERY_DEVICE_MODULES += \
-    libkeymaster4 \
-    libpuresoftkeymasterdevice \
-
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
-
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
+    android.hardware.health@2.1-service \
+    android.hardware.health@2.1-impl
