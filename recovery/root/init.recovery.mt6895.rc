@@ -1,5 +1,3 @@
-import /init.recovery.project.rc
-
 on init
     setprop sys.usb.configfs 1
     setprop sys.usb.controller "11201000.usb0"
@@ -10,7 +8,7 @@ on fs && property:ro.debuggable=0
     # distinguish USB shoulde connect or not, i.e. CDP vs SDP
     # set charging free due to it wait for USB activation
 
-on boot
+on post-fs
     start mtk.plpath.utils.link
 
 on property:persist.vendor.mtk.pl_lnk=1
@@ -25,9 +23,3 @@ service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
     group root system
     oneshot
     disabled
-
-on post-fs
-    start boot-hal-1-2
-
-on boot
-    start health-hal-2-1

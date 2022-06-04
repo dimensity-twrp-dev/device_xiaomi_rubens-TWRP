@@ -43,10 +43,10 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    bootctrl.default \
     android.hardware.boot@1.2-impl \
     android.hardware.boot@1.2-service \
-    android.hardware.boot@1.2.recovery
+    android.hardware.boot@1.2.recovery \
+    bootctrl.mt6895.recovery
 
 # Heath HAL
 PRODUCT_PACKAGES += \

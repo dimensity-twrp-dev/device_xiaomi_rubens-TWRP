@@ -1,3 +1,2 @@
-ro.postinstall.fstab.prefix=/system
 ro.sys.usb.storage.type=mtp
 ro.vendor.mtk_tee_gp_support=1
