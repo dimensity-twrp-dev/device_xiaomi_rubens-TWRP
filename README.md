@@ -2,7 +2,7 @@
 
 =========================================
 
-The Redmi K50 (codenamed _"rubens"_) is a high-end smartphone from Xiaomi.
+The Redmi K50 (codenamed _"rubens"_) is a high-end, mid-range smartphone from Xiaomi.
 
 It was released in March 2022.
 
@@ -18,3 +18,5 @@ Shipped Android Version | 12
 Storage | 128/256 GB
 Battery | 5500 mAh
 Display | 1440 x 3200 pixels, 6.67 inches
+
+![Redmi K50](https://cdn.cnbj1.fds.api.mi-img.com/product-images/redmik504qyoae2/spec-color.jpg)
