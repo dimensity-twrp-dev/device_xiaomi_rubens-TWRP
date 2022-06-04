@@ -1,0 +1,52 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# Currently we dont have e2fsck compiled. So fs check would failed.
+# mount point       fstype    device                                                                flags
+/boot               emmc      /dev/block/by-name/boot                                               flags=slotselect;display="Boot";flashimg=1;backup=1
+/dtbo               emmc      /dev/block/by-name/dtbo                                               flags=slotselect;display="Dtbo";flashimg=1;backup=1
+
+# Persistent Firmware & Properties
+/persist	    ext4      /dev/block/by-name/persist 			                    flags=display="Persist";fsflags=ro
+/persist_image	    emmc      /dev/block/by-name/persist 				            flags=display="Persist";backup=1
+    
+# Partitions updated by stock ROM
+/audio_dsp          emmc      /dev/block/by-name/audio_dsp                                          flags=backup=1;display="Firmware-Update"
+
+/cam_vpu1           emmc      /dev/block/by-name/cam_vpu1                                           flags=backup=1;subpartitionof=/audio_dsp
+/cam_vpu2           emmc      /dev/block/by-name/cam_vpu2                                           flags=backup=1;subpartitionof=/audio_dsp
+/cam_vpu3           emmc      /dev/block/by-name/cam_vpu3                                           flags=backup=1;subpartitionof=/audio_dsp
+
+/gz1                emmc      /dev/block/by-name/gz1                                                flags=backup=1;subpartitionof=/audio_dsp
+/gz2                emmc      /dev/block/by-name/gz2                                                flags=backup=1;subpartitionof=/audio_dsp
+
+/lk1                emmc      /dev/block/by-name/lk1                                                flags=backup=1;subpartitionof=/audio_dsp
+/lk2                emmc      /dev/block/by-name/lk2                                                flags=backup=1;subpartitionof=/audio_dsp 
+
+/preloader_raw      emmc      /dev/block/by-name/preloader_raw                                      flags=backup=1;subpartitionof=/audio_dsp 
+
+/tee1               emmc     /dev/block/by-name/tee1                                                flags=backup=1;subpartitionof=/audio_dsp
+/tee2               emmc     /dev/block/by-name/tee2                                                flags=backup=1;subpartitionof=/audio_dsp
+
+/mcupm_1            emmc      /dev/block/by-name/mcupm_1                                            flags=backup=1;subpartitionof=/audio_dsp
+/mcupm_2            emmc      /dev/block/by-name/mcupm_2                                            flags=backup=1;subpartitionof=/audio_dsp
+
+/scp1               emmc      /dev/block/by-name/scp1                                               flags=backup=1;subpartitionof=/audio_dsp
+/scp2               emmc      /dev/block/by-name/scp2                                               flags=backup=1;subpartitionof=/audio_dsp
+
+/md1img             emmc      /dev/block/by-name/md1img                                             flags=backup=1;subpartitionof=/audio_dsp
+/spmfw              emmc      /dev/block/by-name/spmfw                                              flags=backup=1;subpartitionof=/audio_dsp
+
+/mitee              emmc      /dev/block/by-name/mitee                                              flags=backup=1;subpartitionof=/audio_dsp
+
+/sspm_1             emmc      /dev/block/by-name/sspm_1                                             flags=backup=1;subpartitionof=/audio_dsp
+/sspm_2             emmc      /dev/block/by-name/sspm_2                                             flags=backup=1;subpartitionof=/audio_dsp
+
+/dpm_1              emmc      /dev/block/by-name/dpm_1                                              flags=backup=1;subpartitionof=/audio_dsp
+/dpm_2              emmc      /dev/block/by-name/dpm_2                                              flags=backup=1;subpartitionof=/audio_dsp
+
+/pi_img             emmc      /dev/block/by-name/pi_img                                             flags=backup=1;subpartitionof=/audio_dsp
+
+# removable
+/usb-otg            vfat      /dev/block/sdd1                                                       flags=display="usb-otg";storage;wipeingui;removable;fsflags="utf8"

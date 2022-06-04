@@ -1,0 +1,21 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# TODO: Add 'check' as fs_mgr_flags with data partition.
+# Currently we dont have e2fsck compiled. So fs check would failed.
+
+#<src>                                           <mnt_point>           <type>   <mnt_flags and options>                                         <fs_mgr_flags>
+system                                           /system               ext4     ro                                                              wait,logical,slotselect
+system_ext                                       /system_ext           ext4     ro                                                              wait,logical,slotselect
+product                                          /product              ext4     ro                                                              wait,logical,slotselect
+vendor                                           /vendor               ext4     ro                                                              wait,logical,slotselect
+odm                                              /odm                  ext4     ro                                                              wait,logical,slotselect
+
+# Metadata
+/dev/block/by-name/metadata                      /metadata             ext4     noatime,nosuid,nodev,discard                                    wait,check,formattable
+
+# Userdata
+/dev/block/by-name/userdata                             /data                  f2fs    noatime,nosuid,nodev,discard,noflush_merge,fsync_mode=nobarrier,reserve_root=134217,resgid=1065,checkpoint_merge,gc_merge,inlinecrypt wait,check,formattable,quota,latemount,resize,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,fsverity
+
+/dev/block/by-name/misc                          /misc                 emmc     defaults                                                        defaults

@@ -27,13 +27,22 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS := \
     boot \
+    dtbo \
     system \
+    system_ext \
     product \
-    vendor
-
+    vendor \
+    odm \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_vendor
+    
+    
 # Update engine
 PRODUCT_PACKAGES += \
-    update_engine_sideload
+    update_engine \
+    update_engine_sideload \
+    update_verifier
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -43,6 +52,7 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-impl \
     android.hardware.boot@1.2-impl \
     android.hardware.boot@1.2-service \
     android.hardware.boot@1.2.recovery \
