@@ -10,8 +10,8 @@ on fs && property:ro.debuggable=0
 
 on post-fs
     start mtk.plpath.utils.link
-    start boot-hal-1-2
-    
+    start boot-hal-1-1
+
 on boot
     start health-hal-2-1
 
@@ -27,4 +27,4 @@ service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
     group root system
     oneshot
     disabled
-    
+

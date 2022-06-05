@@ -52,14 +52,12 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-impl.recovery \
-    android.hardware.boot@1.0-impl-1.2-mtkimpl
+    android.hardware.boot@1.1-mtkimpl.recovery \
+    android.hardware.boot@1.1-mtkimpl
 
-# Heath HAL
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.0-impl-2.1
-    
+PRODUCT_PACKAGES_DEBUG += \
+    bootctrl
+
 # Fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.1-impl-mock \
