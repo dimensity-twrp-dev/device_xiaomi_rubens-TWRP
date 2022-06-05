@@ -171,4 +171,4 @@ TARGET_USES_MKE2FS := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_DEFAULT_BRIGHTNESS := 1200
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
-TW_SUPPORT_INPUT_1_2_HAPTICS := true
+TW_SUPPORT_INPUT_1_3_HAPTICS := true
