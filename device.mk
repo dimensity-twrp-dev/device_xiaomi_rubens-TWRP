@@ -68,7 +68,6 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     libkeymaster41 \
     libkeymaster4 \
     libpuresoftkeymasterdevice \
-    libandroidicu \
     libion
 
 RECOVERY_LIBRARY_SOURCE_FILES += \
