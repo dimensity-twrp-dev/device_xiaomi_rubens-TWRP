@@ -36,6 +36,7 @@ on post-fs
 
 on boot
     start health-hal-2-1
+    start vendor.mtk.vibrator-1-2
     
 on fs
     install_keyring
@@ -95,3 +96,11 @@ on property:twrp.decrypt.done=true
     stop teei_daemon
     stop keymaster-4-0
     stop gatekeeper-1-0
+
+service vendor.mtk.vibrator-1-2 /vendor/bin/hw/android.hardware.vibrator-service.mediatek
+    class hal
+    disabled
+    user root
+    group root
+    seclabel u:r:recovery:s0
+
