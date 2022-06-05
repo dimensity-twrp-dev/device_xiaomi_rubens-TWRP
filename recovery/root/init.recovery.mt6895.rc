@@ -36,7 +36,7 @@ on post-fs
 
 on fs
     install_keyring
-    
+
 service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
     class main
     user root
@@ -71,6 +71,13 @@ service keymaster-4-0 /system/bin/android.hardware.keymaster@4.0-service.beanpod
     oneshot
     seclabel u:r:recovery:s0
 
+service vendor.mtk.vibrator-1-2 /vendor/bin/hw/vendor.mtk.hardware.vibrator@1.2-service
+    class hal
+    disabled
+    user root
+    group root
+    seclabel u:r:recovery:s0
+
 on property:crypto.ready=1
     start keymaster-4-0
 
@@ -95,3 +102,4 @@ on property:twrp.decrypt.done=true
 
 on boot
     start health-hal-2-1
+    start vendor.mtk.vibrator-1-2
