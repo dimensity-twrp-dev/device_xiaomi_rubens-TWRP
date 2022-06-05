@@ -40,7 +40,7 @@ service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
     disabled
     seclabel u:r:recovery:s0
 
-service vibrator /system/bin/hw/android.hardware.vibrator-service.mediatek
+service vendor.mtk.vibrator-1-2 /vendor/bin/hw/android.hardware.vibrator-service.mediatek
     class hal
     disabled
     user root
@@ -48,5 +48,5 @@ service vibrator /system/bin/hw/android.hardware.vibrator-service.mediatek
     seclabel u:r:recovery:s0
 
 on boot
-    start vibrator
+    start vendor.mtk.vibrator-1-2
     start health-hal-2-1
