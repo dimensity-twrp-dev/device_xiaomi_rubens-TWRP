@@ -15,6 +15,6 @@ odm                                              /odm                  erofs    
 /dev/block/by-name/metadata                      /metadata             ext4     noatime,nosuid,nodev,discard                                    wait,check,formattable
 
 # Userdata
-/dev/block/by-name/userdata                             /data                  f2fs    noatime,nosuid,nodev,discard,noflush_merge,fsync_mode=nobarrier,reserve_root=134217,resgid=1065,checkpoint_merge,gc_merge,inlinecrypt wait,check,formattable,quota,latemount,resize,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,fsverity
+/dev/block/by-name/userdata                      /data                 f2fs     noatime,nosuid,nodev,discard,noflush_merge,fsync_mode=nobarrier,reserve_root=134217,resgid=1065,checkpoint_merge,gc_merge,inlinecrypt wait,check,formattable,quota,latemount,resize,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,fsverity
 
 /dev/block/by-name/misc                          /misc                 emmc     defaults                                                        defaults
