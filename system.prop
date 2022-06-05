@@ -1,3 +1,14 @@
-ro.sys.usb.storage.type=mtp
-ro.vendor.mtk_tee_gp_support=1
+# Fstab
 ro.postinstall.fstab.prefix=/system
+
+# USB
+ro.sys.usb.storage.type=mtp
+
+# TEE
+ro.vendor.mtk_tee_gp_support=1
+
+# Timezone
+persist.sys.timezone=Asia/Shanghai
+
+# Crypto
+#ro.crypto.volume.filenames_mode=aes-256-cts
