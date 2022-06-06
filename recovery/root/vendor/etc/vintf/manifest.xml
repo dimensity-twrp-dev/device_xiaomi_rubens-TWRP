@@ -646,6 +646,16 @@
         </interface>
         <fqname>@1.2::IVibrator/default</fqname>
     </hal>
+    <hal format="hidl">
+        <name>android.hardware.keymaster</name>
+        <transport>hwbinder</transport>
+        <version>4.0</version>
+        <interface>
+            <name>IKeymasterDevice</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@4.0::IKeymasterDevice/default</fqname>
+    </hal>
     <sepolicy>
         <version>31.0</version>
     </sepolicy>
