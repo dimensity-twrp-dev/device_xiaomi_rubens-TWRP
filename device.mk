@@ -76,19 +76,18 @@ PRODUCT_PACKAGES += \
 
 # Keystore
 PRODUCT_PACKAGES += \
-    keystore2
+    android.system.keystore2
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-impl:64 \
     android.hardware.gatekeeper@1.0-service \
-    android.hardware.gatekeeper@1.0-impl
+    android.hardware.gatekeeper@1.0-service.vendor
 
 # Keymaster
 PRODUCT_PACKAGES += \
-    android.hardware.keymaster@4.0-service \
-    libkeymaster4 \
-    libkeymaster4support \
-    libkeymaster_portable \
-    libkeymaster_messages \
-    libsoft_attestation_cert \
-    libpuresoftkeymasterdevice
+    android.hardware.keymaster@4.1-service \
+    android.hardware.keymaster@4.1.vendor \
+    libkeymaster4.vendor:64 \
+    libkeymaster41.vendor:64 \
+    libkeymaster4_1support.vendor:64
