@@ -59,6 +59,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     bootctrl
 
+# Health HAL
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service
+
 # Build MT-PL-Utils
 PRODUCT_PACKAGES += \
     mtk_plpath_utils \
