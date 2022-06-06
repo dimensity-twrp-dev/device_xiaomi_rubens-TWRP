@@ -58,6 +58,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     bootctrl
 
+# Build MT-PL-Utils
+PRODUCT_PACKAGES += \
+    mtk_plpath_utils \
+    mtk_plpath_utils.recovery
+
 # Fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.1-impl-mock \
@@ -65,21 +70,19 @@ PRODUCT_PACKAGES += \
 
 # Keystore
 PRODUCT_PACKAGES += \
-    android.system.keystore2
+    keystore2
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-service \
-    android.hardware.gatekeeper@1.0-impl \
-    android.hardware.gatekeeper@1.0.vendor
+    android.hardware.gatekeeper@1.0-impl
 
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.0-service \
-    android.hardware.keymaster@4.0.vendor \
-    libkeymaster4.vendor:64 \
-    libkeymaster4support.vendor:64 \
-    libkeymaster_portable.vendor:64 \
-    libkeymaster_messages.vendor:64 \
-    libsoft_attestation_cert.vendor:64 \
-    libpuresoftkeymasterdevice.vendor:64
+    libkeymaster4 \
+    libkeymaster4support \
+    libkeymaster_portable \
+    libkeymaster_messages \
+    libsoft_attestation_cert \
+    libpuresoftkeymasterdevice
