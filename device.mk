@@ -59,35 +59,29 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     bootctrl
 
-# Health HAL
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service
-
 # Build MT-PL-Utils
 PRODUCT_PACKAGES += \
     mtk_plpath_utils \
     mtk_plpath_utils.recovery
 
+# Health HAL
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service
+
+# Keystore HAL
+PRODUCT_PACKAGES += \
+    android.system.keystore2
+
+# Gatekeeper HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-service
+
+# Keymint HAL
+PRODUCT_PACKAGES += \
+    android.hardware.security.keymint-service
+
 # Fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.1-impl-mock \
     fastbootd
-
-# Keystore
-PRODUCT_PACKAGES += \
-    android.system.keystore2
-
-# Gatekeeper
-PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0-impl:64 \
-    android.hardware.gatekeeper@1.0-service \
-    android.hardware.gatekeeper@1.0-service.vendor
-
-# Keymaster
-PRODUCT_PACKAGES += \
-    android.hardware.keymaster@4.1-service \
-    android.hardware.keymaster@4.1.vendor \
-    libkeymaster4.vendor:64 \
-    libkeymaster41.vendor:64 \
-    libkeymaster4_1support.vendor:64
