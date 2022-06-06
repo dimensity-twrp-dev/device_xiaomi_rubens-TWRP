@@ -5,7 +5,7 @@ on init
     setprop sys.usb.controller "11201000.usb0"
     setprop sys.usb.ffs.aio_compat 1
     mkdir /mnt/vendor/persist 0700 root root
-    mount ext4 /dev/block/platform/bootdevice/by-name/persist /mnt/vendor/persist
+    mount /dev/block/by-name/persist /mnt/vendor/persist
     export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw
 
 on fs && property:ro.debuggable=0
