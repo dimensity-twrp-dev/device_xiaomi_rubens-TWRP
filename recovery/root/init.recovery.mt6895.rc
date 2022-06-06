@@ -5,11 +5,9 @@ on init
     setprop sys.usb.controller "11201000.usb0"
     setprop sys.usb.ffs.aio_compat 1
     mkdir /mnt/vendor/persist 0700 root root
-    mount ext4 /dev/block/platform/bootdevice/by-name/persist /mnt/vendor/persist
+    mount /dev/block/by-name/persist /mnt/vendor/persist
     export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw
-
-on fs
-    install_keyring
+    start keystore2
 
 on fs && property:ro.debuggable=0
     # distinguish USB shoulde connect or not, i.e. CDP vs SDP
@@ -38,53 +36,27 @@ on post-fs
 
     exec u:r:update_engine:s0 root root -- /system/bin/mtk_plpath_utils
 
-service keystore_auth /system/bin/keystore_auth
-    oneshot
-    user system
-    group root
-    disabled
-    seclabel u:r:recovery:s0
-
-service keystore2 /system/bin/keystore2 /tmp/misc/keystore
-    user root
-    group root drmrpc readproc
-    disabled
-    seclabel u:r:recovery:s0
-
-service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
-    user root
-    group root
-    disabled
-    seclabel u:r:recovery:s0
-
-service keymint-beanpod /vendor/bin/hw/android.hardware.security.keymint@1.0-service.beanpod
-    user root
-    group root drmrpc
-    disabled
-    oneshot
-    seclabel u:r:recovery:s0
-
 on property:crypto.ready=1
-    start keymint-beanpod
+    start vendor.keymint-beanpod
 
 on property:hwservicemanager.ready=true
-    start keymint-beanpod
-    start gatekeeper-1-0
+    start vendor.keymint-beanpod
+    start vendor.gatekeeper-1-0
 
 on property:ro.crypto.state=unsupported
     stop teei_daemon
-    stop keymint-beanpod
-    stop gatekeeper-1-0
+    stop vendor.keymint-beanpod
+    stop vendor.gatekeeper-1-0
 
 on property:ro.crypto.state=unencrypted
     stop teei_daemon
-    stop keymint-beanpod
-    stop gatekeeper-1-0
+    stop vendor.keymint-beanpod
+    stop vendor.gatekeeper-1-0
 
 on property:twrp.decrypt.done=true
     stop teei_daemon
-    stop keymint-beanpod
-    stop gatekeeper-1-0
+    stop vendor.keymint-beanpod
+    stop vendor.gatekeeper-1-0
 
 on boot
     start health-hal-2-1
