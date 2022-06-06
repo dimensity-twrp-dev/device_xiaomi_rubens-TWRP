@@ -58,17 +58,10 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
+service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
-    seclabel u:r:recovery:s0
-
-service keymaster-4-0 /system/bin/android.hardware.keymaster@4.0-service.beanpod
-    user root
-    group root drmrpc
-    disabled
-    oneshot
     seclabel u:r:recovery:s0
 
 service vendor.mtk.vibrator-1-2 /vendor/bin/hw/vendor.mtk.hardware.vibrator@1.2-service
@@ -79,25 +72,25 @@ service vendor.mtk.vibrator-1-2 /vendor/bin/hw/vendor.mtk.hardware.vibrator@1.2-
     seclabel u:r:recovery:s0
 
 on property:crypto.ready=1
-    start keymaster-4-0
+    start keymaster-4-1
 
 on property:hwservicemanager.ready=true
-    start keymaster-4-0
+    start keymaster-4-1
     start gatekeeper-1-0
 
 on property:ro.crypto.state=unsupported
     stop teei_daemon
-    stop keymaster-4-0
+    stop keymaster-4-1
     stop gatekeeper-1-0
 
 on property:ro.crypto.state=unencrypted
     stop teei_daemon
-    stop keymaster-4-0
+    stop keymaster-4-1
     stop gatekeeper-1-0
 
 on property:twrp.decrypt.done=true
     stop teei_daemon
-    stop keymaster-4-0
+    stop keymaster-4-1
     stop gatekeeper-1-0
 
 on boot
