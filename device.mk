@@ -40,6 +40,7 @@ AB_OTA_PARTITIONS := \
     
 # Update engine
 PRODUCT_PACKAGES += \
+    checkpoint_gc \
     update_engine \
     update_engine_sideload \
     update_verifier
