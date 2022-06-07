@@ -183,3 +183,4 @@ TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_DEFAULT_BRIGHTNESS := 1200
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
 TW_DEFAULT_LANGUAGE := "zh_CN"
+TW_EXCLUDE_TWRPAPP := true
