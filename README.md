@@ -15,8 +15,8 @@ Chipset | Mediatek Dimensity 8100
 GPU     | Mali-G610 MC6
 Memory  | 8/12 GB RAM (LPDDR5 6400Mbps)
 Shipped Android Version | 12
-Storage | 128/256 GB (UFS 3.1)
+Storage | 128/256/512 GB (UFS 3.1)
 Battery | 5500 mAh
 Display | 1440 x 3200 pixels, 6.67 inches, 60/120 hz
 
-![Redmi K50](https://cdn.cnbj1.fds.api.mi-img.com/product-images/redmik504qyoae2/spec-color.jpg)
+![Redmi K50](https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1653381863.47942179.png)
