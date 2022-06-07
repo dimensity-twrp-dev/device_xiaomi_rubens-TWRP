@@ -9,7 +9,6 @@ on init
     chown root:root /mnt/vendor/persist
     mount /dev/block/by-name/persist /mnt/vendor/persist
     export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw
-    start keystore2
 
 on fs && property:ro.debuggable=0
     # distinguish USB shoulde connect or not, i.e. CDP vs SDP
@@ -38,6 +37,9 @@ on post-fs
 
     exec u:r:update_engine:s0 root root -- /system/bin/mtk_plpath_utils
 
+on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
+    install_keyring
+
 service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     interface android.hardware.gatekeeper@1.0::IGatekeeper default
     user root
@@ -50,6 +52,20 @@ service keymint-beanpod /vendor/bin/hw/android.hardware.security.keymint@1.0-ser
     group root drmrpc
     disabled
     oneshot
+    seclabel u:r:recovery:s0
+
+service keystore_auth /system/bin/keystore_auth
+    user system
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+service keystore2 /system/bin/keystore2 /data/misc/keystore
+    class early_hal
+    user root
+    group root drmrpc readproc log
+    disabled
     seclabel u:r:recovery:s0
 
 on property:crypto.ready=1
