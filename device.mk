@@ -75,11 +75,18 @@ PRODUCT_PACKAGES += \
 
 # Gatekeeper HAL
 PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-impl \
     android.hardware.gatekeeper@1.0-service
 
 # Keymint HAL
 PRODUCT_PACKAGES += \
-    android.hardware.security.keymint-service
+    android.hardware.security.keymint-service \
+    android.hardware.security.secureclock \
+    android.hardware.security.sharedsecret
+    
+# Drm
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.4
 
 # Keymaster
 PRODUCT_PACKAGES += \
@@ -91,7 +98,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.1-impl-mock \
     fastbootd
-    
+
 # Additional target Libraries
 TARGET_RECOVERY_DEVICE_MODULES += \
     android.hardware.keymaster@4.1 \

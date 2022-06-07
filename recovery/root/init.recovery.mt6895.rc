@@ -10,6 +10,16 @@ on init
     mount /dev/block/by-name/persist /mnt/vendor/persist
     export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw
 
+on early-fs
+    start vold
+    
+on late-fs
+    # Wait for keymaster
+    exec_start wait_for_keymaster
+
+    # Mount RW partitions which need run fsck
+    mount_all /first_stage_ramdisk/fstab.mt6895 --late
+
 on fs && property:ro.debuggable=0
     # distinguish USB shoulde connect or not, i.e. CDP vs SDP
     # set charging free due to it wait for USB activation
@@ -47,11 +57,16 @@ service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     disabled
     seclabel u:r:recovery:s0
 
-service keymint-beanpod /vendor/bin/hw/android.hardware.security.keymint@1.0-service.beanpod
+service vendor.keymint-beanpod /vendor/bin/hw/android.hardware.security.keymint@1.0-service.beanpod
+	class early_hal
+	user nobody
+	seclabel u:r:recovery:s0
+
+service wait_for_keymaster /system/bin/wait_for_keymaster
     user root
-    group root drmrpc
-    disabled
-    oneshot
+    group root system
+    priority -20
+    ioprio rt 0
     seclabel u:r:recovery:s0
 
 service keystore_auth /system/bin/keystore_auth
@@ -63,31 +78,30 @@ service keystore_auth /system/bin/keystore_auth
 
 service keystore2 /system/bin/keystore2 /data/misc/keystore
     class early_hal
-    user root
-    group root drmrpc readproc log
-    disabled
+    user keystore
+    group keystore readproc log
     seclabel u:r:recovery:s0
 
 on property:crypto.ready=1
-    start keymint-beanpod
+    start vendor.keymint-beanpod
 
 on property:hwservicemanager.ready=true
-    start keymint-beanpod
+    start vendor.keymint-beanpod
     start gatekeeper-1-0
 
 on property:ro.crypto.state=unsupported
     stop teei_daemon
-    stop keymint-beanpod
+    stop vendor.keymint-beanpod
     stop gatekeeper-1-0
 
 on property:ro.crypto.state=unencrypted
     stop teei_daemon
-    stop keymint-beanpod
+    stop vendor.keymint-beanpod
     stop gatekeeper-1-0
 
 on property:twrp.decrypt.done=true
     stop teei_daemon
-    stop keymint-beanpod
+    stop vendor.keymint-beanpod
     stop gatekeeper-1-0
 
 on boot
