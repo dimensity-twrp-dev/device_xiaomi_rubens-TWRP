@@ -8,8 +8,8 @@
 /dtbo               emmc      /dev/block/by-name/dtbo                                               flags=slotselect;display="Dtbo";flashimg=1;backup=1
 
 # Persistent Firmware & Properties
-/persist	        ext4      /dev/block/by-name/persist 			                                flags=display="Persist";fsflags=ro
-/persist_image	    emmc      /dev/block/by-name/persist 				                            flags=display="Persist";backup=1
+/persist            ext4      /dev/block/by-name/persist                                            flags=display="Persist";fsflags=ro
+/persist_image      emmc      /dev/block/by-name/persist                                            flags=display="Persist";backup=1
     
 # Partitions updated by stock ROM
 /audio_dsp          emmc      /dev/block/by-name/audio_dsp                                          flags=backup=1;display="Firmware-Update"
