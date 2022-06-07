@@ -1,4 +1,4 @@
-### [WIP] TWRP device tree for Redmi K50 (rubens)
+### TWRP device tree for Redmi K50 (rubens)
 
 =========================================
 
