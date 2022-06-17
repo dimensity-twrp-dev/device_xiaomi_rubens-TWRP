@@ -21,6 +21,3 @@ odm                                                 /odm                  ext4  
 /dev/block/by-name/vbmeta                           /vbmeta               emmc     defaults                                                        defaults
 /dev/block/by-name/vbmeta_vendor                    /vbmeta_vendor        emmc     defaults                                                        first_stage_mount,nofail,slotselect
 /dev/block/by-name/vbmeta_system                    /vbmeta_system        emmc     defaults                                                        first_stage_mount,nofail,slotselect,avb=vbmeta
-/devices/platform/soc/11240000.mmc*                 auto                  auto     defaults                                                        voldmanaged=sdcard1:auto,encryptable=userdata
-/devices/platform/usb_xhci*                         auto                  vfat     defaults                                                        voldmanaged=usbotg:auto
-/devices/platform/soc/11201000.usb0/11200000.xhci*  auto                  vfat     defaults                                                        voldmanaged=usbotg:auto
