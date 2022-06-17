@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include <android/hardware/boot/1.1/IBootControl.h>
+#include <android/hardware/boot/1.2/IBootControl.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
 #include <libboot_control/libboot_control.h>
@@ -25,14 +25,14 @@
 namespace android {
 namespace hardware {
 namespace boot {
-namespace V1_1 {
+namespace V1_2 {
 namespace implementation {
 
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::hardware::boot::V1_0::BoolResult;
 using ::android::hardware::boot::V1_1::IBootControl;
 using ::android::hardware::boot::V1_1::MergeStatus;
+using ::android::hardware::boot::V1_2::BoolResult;
 
 class BootControl : public IBootControl {
   public:
@@ -52,6 +52,9 @@ class BootControl : public IBootControl {
     Return<bool> setSnapshotMergeStatus(MergeStatus status) override;
     Return<MergeStatus> getSnapshotMergeStatus() override;
 
+    // Methods from ::android::hardware::boot::V1_2::IBootControl follow.
+    Return<uint32_t> getActiveBootSlot() override;
+
   private:
     android::bootable::BootControl impl_;
     android::bootable::BootControlExt implext_;
@@ -61,7 +64,7 @@ class BootControl : public IBootControl {
 extern "C" IBootControl* HIDL_FETCH_IBootControl(const char* name);
 
 }  // namespace implementation
-}  // namespace V1_1
+}  // namespace V1_2
 }  // namespace boot
 }  // namespace hardware
 }  // namespace android
