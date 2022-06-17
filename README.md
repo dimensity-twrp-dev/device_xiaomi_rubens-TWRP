@@ -24,7 +24,6 @@ What's working / 什么工作:
 What's not working / 什么不工作:
 - MTP / 多路径传输
 - Haptic / 震动
-- CPU Temperature / CPU 温度
 
 ## Device specifications
 
