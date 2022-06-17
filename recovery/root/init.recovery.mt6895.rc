@@ -25,7 +25,7 @@ on fs && property:ro.debuggable=0
     # set charging free due to it wait for USB activation
 
 on post-fs
-    start boot-hal-1-1
+    start boot-hal-1-2
 
     # Support A/B feature for EMMC and UFS boot region
     symlink /dev/block/sda /dev/block/mmcblk0boot0

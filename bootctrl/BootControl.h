@@ -30,9 +30,9 @@ namespace implementation {
 
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::hardware::boot::V1_1::IBootControl;
+using ::android::hardware::boot::V1_2::IBootControl;
 using ::android::hardware::boot::V1_1::MergeStatus;
-using ::android::hardware::boot::V1_2::BoolResult;
+using ::android::hardware::boot::V1_0::BoolResult;
 
 class BootControl : public IBootControl {
   public:
