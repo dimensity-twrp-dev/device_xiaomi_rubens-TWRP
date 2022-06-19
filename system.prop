@@ -1,9 +1,18 @@
 # Fstab
 ro.postinstall.fstab.prefix=/system
 
-# USB
+# USB MTP WHQL
+ro.sys.usb.mtp.whql.enable=0
+
+# Power off opt in IPO
+sys.ipo.pwrdncap=2
 ro.sys.usb.storage.type=mtp
 
+# USB BICR function
+ro.sys.usb.bicr=no
+
+# USB Charge only function
+ro.sys.usb.charging.only=yes
 
 # Timezone
 persist.sys.timezone=Asia/Shanghai
