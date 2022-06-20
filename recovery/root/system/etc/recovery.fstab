@@ -15,9 +15,3 @@ odm                                                 /odm                  ext4  
 /dev/block/by-name/userdata                         /data                 f2fs     noatime,nosuid,nodev,discard,noflush_merge,fsync_mode=nobarrier,reserve_root=134217,resgid=1065,checkpoint_merge,gc_merge,inlinecrypt wait,check,formattable,quota,latemount,resize,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,fsverity
 /dev/block/by-name/misc                             /misc                 emmc     defaults                                                        defaults
 /dev/block/by-name/boot                             /boot                 emmc     defaults                                                        first_stage_mount,nofail,slotselect
-/dev/block/by-name/rescue                           /cache                ext4     noatime,nosuid,nodev,noauto_da_alloc,discard                    wait,check,formattable
-/dev/block/by-name/persist                          /mnt/vendor/persist   ext4     noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
-/dev/block/by-name/frp                              /persistent           emmc     defaults                                                        defaults
-/dev/block/by-name/vbmeta                           /vbmeta               emmc     defaults                                                        defaults
-/dev/block/by-name/vbmeta_vendor                    /vbmeta_vendor        emmc     defaults                                                        first_stage_mount,nofail,slotselect
-/dev/block/by-name/vbmeta_system                    /vbmeta_system        emmc     defaults                                                        first_stage_mount,nofail,slotselect,avb=vbmeta

@@ -243,4 +243,3 @@ on property:vendor.crypto.fake_encrypt=1 && property:vold.post_fs_data_done=1
 
 on post-fs-data
     setprop vendor.soter.teei.logini "start"
-
