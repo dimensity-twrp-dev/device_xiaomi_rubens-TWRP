@@ -119,13 +119,6 @@ service wait_for_keymaster /system/bin/wait_for_keymaster
     ioprio rt 0
     seclabel u:r:recovery:s0
 
-service keystore_auth /system/bin/keystore_auth
-    user system
-    group root
-    disabled
-    oneshot
-    seclabel u:r:recovery:s0
-
 service keystore2 /system/bin/keystore2 /data/misc/keystore
     class early_hal
     user keystore
