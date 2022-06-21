@@ -11,7 +11,6 @@
         manifest_log.xml
         manifest_mdmonitor.xml
         manifest_aee.xml
-        manifest_boot.xml
         manifest_netdagent.xml
         manifest_tetheroffloadservice.xml
         manifest_pq.xml

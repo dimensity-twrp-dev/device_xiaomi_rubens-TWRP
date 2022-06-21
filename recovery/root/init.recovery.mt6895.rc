@@ -9,7 +9,7 @@ on init
 # We need vold early for metadata encryption
 on early-fs
     start vold
-    
+
 on late-fs
     # Wait for keymaster
     exec_start wait_for_keymaster
@@ -47,7 +47,7 @@ on post-fs
 on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
     install_keyring
 
-service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
+service vendor.gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
@@ -76,23 +76,22 @@ on property:crypto.ready=1
 
 on property:hwservicemanager.ready=true
     start vendor.keymint-beanpod
-    start gatekeeper-1-0
+    start vendor.gatekeeper-1-0
 
 on property:ro.crypto.state=unsupported
     stop teei_daemon
     stop vendor.keymint-beanpod
-    stop gatekeeper-1-0
+    stop vendor.gatekeeper-1-0
 
 on property:ro.crypto.state=unencrypted
     stop teei_daemon
     stop vendor.keymint-beanpod
-    stop gatekeeper-1-0
+    stop vendor.gatekeeper-1-0
 
 on property:twrp.decrypt.done=true
     stop teei_daemon
     stop vendor.keymint-beanpod
-    stop gatekeeper-1-0
+    stop vendor.gatekeeper-1-0
 
 on boot
     start health-hal-2-1
-

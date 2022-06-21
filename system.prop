@@ -1,18 +1,8 @@
 # Fstab
 ro.postinstall.fstab.prefix=/system
 
-# USB MTP WHQL
-ro.sys.usb.mtp.whql.enable=0
-
-# Power off opt in IPO
-sys.ipo.pwrdncap=2
+# USB MTP
 ro.sys.usb.storage.type=mtp
-
-# USB BICR function
-ro.sys.usb.bicr=no
-
-# USB Charge only function
-ro.sys.usb.charging.only=yes
 
 # Timezone
 persist.sys.timezone=Asia/Shanghai
@@ -23,9 +13,3 @@ ro.crypto.volume.filenames_mode=aes-256-cts
 # TEE
 ro.vendor.mtk_tee_gp_support=1
 ro.vendor.mtk_microtrust_tee_support=1
-
-# Gatekeeper
-ro.hardware.gatekeeper=beanpod
-
-# Kmsetkey
-ro.hardware.kmsetkey=beanpod
