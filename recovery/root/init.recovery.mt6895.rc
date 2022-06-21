@@ -94,7 +94,6 @@ on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
     install_keyring
 
 service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
-    interface android.hardware.gatekeeper@1.0::IGatekeeper default
     user root
     group root
     disabled
