@@ -100,7 +100,8 @@ PRODUCT_PACKAGES += \
 
 # Additional target Libraries
 TARGET_RECOVERY_DEVICE_MODULES += \
-    android.hardware.keymaster@4.1
+    android.hardware.keymaster@4.1 \
+    android.hardware.gatekeeper@1.0-service
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.1.so

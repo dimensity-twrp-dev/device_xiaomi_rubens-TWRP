@@ -17,52 +17,6 @@ on late-fs
     # Mount RW partitions which need run fsck
     mount_all /first_stage_ramdisk/fstab.mt6895 --late
 
-on fs
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/0-005a/custom_wave
-    chmod 0666  /sys/bus/i2c/drivers/aw8697_haptic/0-005a/custom_wave
-
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/1-005a/custom_wave
-    chmod 0666  /sys/bus/i2c/drivers/aw8697_haptic/1-005a/custom_wave
-
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/2-005a/f0_save
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/2-005a/osc_save
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/2-005a/custom_wave
-    chmod 0666  /sys/bus/i2c/drivers/aw8697_haptic/2-005a/custom_wave
-
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/3-005a/osc_save
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/3-005a/custom_wave
-    chmod 0666  /sys/bus/i2c/drivers/aw8697_haptic/3-005a/custom_wave
-
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/7-005a/f0_save
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/7-005a/f0_cali
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/7-005a/osc_save
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/7-005a/custom_wave
-    chmod 0666  /sys/bus/i2c/drivers/aw8697_haptic/7-005a/custom_wave
-
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/9-005a/f0_save
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/9-005a/f0_cali
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/9-005a/osc_save
-    chown system system /sys/bus/i2c/drivers/aw8697_haptic/9-005a/custom_wave
-    chmod 0666  /sys/bus/i2c/drivers/aw8697_haptic/9-005a/custom_wave
-
-    chmod 0666 /sys/class/qcom-haptics/lra_calibration
-    chmod 0666 /sys/class/qcom-haptics/lra_impedance
-
-    chown system system /sys/bus/i2c/drivers/aw8624_haptic/2-005a/f0_save
-    chown system system /sys/bus/i2c/drivers/aw8624_haptic/2-005a/osc_save
-    chown system system /sys/bus/i2c/drivers/aw8624_haptic/2-005a/custom_wave
-    chmod 0666  /sys/bus/i2c/drivers/aw8624_haptic/2-005a/custom_wave
-
-    chown system system /sys/bus/i2c/drivers/awinic_haptic/2-005a/f0_save
-    chown system system /sys/bus/i2c/drivers/awinic_haptic/2-005a/osc_save
-    chown system system /sys/bus/i2c/drivers/awinic_haptic/2-005a/custom_wave
-    chmod 0666  /sys/bus/i2c/drivers/awinic_haptic/2-005a/custom_wave
-
-    chown system system /sys/bus/i2c/drivers/awinic_haptic/2-0058/f0_save
-    chown system system /sys/bus/i2c/drivers/awinic_haptic/2-0058/osc_save
-    chown system system /sys/bus/i2c/drivers/awinic_haptic/2-0058/custom_wave
-    chmod 0666  /sys/bus/i2c/drivers/awinic_haptic/2-0058/custom_wave
-
 on fs && property:ro.debuggable=0
     # distinguish USB shoulde connect or not, i.e. CDP vs SDP
     # set charging free due to it wait for USB activation
@@ -94,23 +48,15 @@ on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
     install_keyring
 
 service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
-    interface android.hardware.gatekeeper@1.0::IGatekeeper default
     user root
     group root
     disabled
-    seclabel u:r:recovery:s0
-
-service vibrator-service.mediatek /vendor/bin/hw/android.hardware.vibrator-service.mediatek
-    class hal
-    disabled
-    user root
-    group root
     seclabel u:r:recovery:s0
 
 service vendor.keymint-beanpod /vendor/bin/hw/android.hardware.security.keymint@1.0-service.beanpod
-	class early_hal
-	user nobody
-	seclabel u:r:recovery:s0
+    class early_hal
+    user nobody
+    seclabel u:r:recovery:s0
 
 service wait_for_keymaster /system/bin/wait_for_keymaster
     user root
@@ -149,4 +95,4 @@ on property:twrp.decrypt.done=true
 
 on boot
     start health-hal-2-1
-    start vibrator-service.mediatek
+
