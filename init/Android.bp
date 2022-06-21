@@ -1,0 +1,15 @@
+cc_library_static {
+    name: "libinit_rubens",
+    header_libs: [
+        "libbase_headers",
+    ],
+    cflags: [
+        "-Wall",
+//      "-DBUILD_FOR_CMI",
+    ],
+    static_libs: [
+        "libbase",
+    ],
+    srcs: ["init_rubens.cpp"],
+    recovery_available: true,
+}
