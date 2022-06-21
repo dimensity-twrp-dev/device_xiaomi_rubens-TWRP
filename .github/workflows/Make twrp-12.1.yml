@@ -77,4 +77,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: rubens_twrp-12.1
-        path: workspace/out/target/product/rubens/vendor_boot.img
+        path: workspace/out/target/product/rubens/*.img
