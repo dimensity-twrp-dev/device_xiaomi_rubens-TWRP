@@ -18,7 +18,7 @@ What's working / 什么工作:
 - Mount data / 挂载 Data
 - Flash some things / 刷写一些东西
 - USB-OTG / 外接U盘
-- Decryption (default password) / 默认密码解密
+- Decryption / 密码解密
 - ADB / 安卓调试桥
 
 What's not working / 什么不工作:
