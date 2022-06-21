@@ -16,3 +16,4 @@ ro.vendor.mtk_microtrust_tee_support=1
 
 # Gatekeeper
 ro.hardware.gatekeeper=beanpod
+
