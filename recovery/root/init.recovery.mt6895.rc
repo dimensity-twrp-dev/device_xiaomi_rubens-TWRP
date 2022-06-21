@@ -5,6 +5,11 @@ on init
     setprop sys.usb.controller "11201000.usb0"
     setprop sys.usb.ffs.aio_compat 1
     export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw
+    start hwservicemanager
+    setprop crypto.ready 1
+
+on fs
+    install_keyring
 
 # We need vold early for metadata encryption
 on early-fs
@@ -44,9 +49,6 @@ on post-fs
 
     exec u:r:update_engine:s0 root root -- /system/bin/mtk_plpath_utils
 
-on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
-    install_keyring
-
 service vendor.gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     user root
     group root
@@ -71,6 +73,19 @@ service keystore2 /system/bin/keystore2 /data/misc/keystore
     group keystore readproc log
     seclabel u:r:recovery:s0
 
+service hwservicemanager /system/bin/hwservicemanager
+    user root
+    group root
+    disabled
+    onrestart setprop hwservicemanager.ready false
+    seclabel u:r:recovery:s0
+    
+service servicemanager /system/bin/servicemanager
+    user root
+    group root readproc
+    disabled
+    seclabel u:r:recovery:s0
+
 on property:crypto.ready=1
     start vendor.keymint-beanpod
 
@@ -93,5 +108,12 @@ on property:twrp.decrypt.done=true
     stop vendor.keymint-beanpod
     stop vendor.gatekeeper-1-0
 
+on property:crypto.ready=0
+    stop teei_daemon
+    stop vendor.keymint-beanpod
+    stop vendor.gatekeeper-1-0
+    stop servicemanager
+
 on boot
     start health-hal-2-1
+    setprop sys.usb.config adb

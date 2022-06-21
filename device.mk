@@ -79,9 +79,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.system.keystore2
 
-# Gatekeeper
-PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0
 
 # Keymint
 PRODUCT_PACKAGES += \
@@ -99,8 +96,7 @@ PRODUCT_PACKAGES += \
 
 # Additional target Libraries
 TARGET_RECOVERY_DEVICE_MODULES += \
-    android.hardware.keymaster@4.1 \
-    android.hardware.gatekeeper@1.0-service
+    android.hardware.keymaster@4.1
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.1.so
