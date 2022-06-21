@@ -6,25 +6,6 @@ The Redmi K50 (codenamed _"rubens"_) is a high-end, mid-range smartphone from Xi
 
 It was released in March 2022.
 
-Redmi K50（设备代号为 _"rubens"_）是小米的一款高端、中档智能手机。
-
-它于2022年3月发布。
-
-=========================================
-
-What's working / 什么工作: 
-- Display / 显示
-- Touch / 触控
-- Mount data / 挂载 Data
-- Flash some things / 刷写一些东西
-- USB-OTG / 外接U盘
-- Decryption / 密码解密
-- ADB / 安卓调试桥
-
-What's not working / 什么不工作:
-- MTP / 多路径传输
-- Haptic / 震动
-
 ## Device specifications
 
 Basic   | Spec Sheet
