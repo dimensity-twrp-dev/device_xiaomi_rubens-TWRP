@@ -59,35 +59,36 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     bootctrl
 
-# Build MT-PL-Utils
-PRODUCT_PACKAGES += \
-    mtk_plpath_utils \
-    mtk_plpath_utils.recovery
-
-# Health HAL
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service
-
-# Keystore HAL
-PRODUCT_PACKAGES += \
-    android.system.keystore2
-
-# Keymint HAL
-PRODUCT_PACKAGES += \
-    android.hardware.security.keymint \
-    android.hardware.security.secureclock \
-    android.hardware.security.sharedsecret
-    
-# Drm
-PRODUCT_PACKAGES += \
-    android.hardware.drm@1.4
-
 # Fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.1-impl-mock \
     android.hardware.fastboot@1.1-impl-mock.recovery \
     fastbootd
+
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service
+
+# Build MT-PL-Utils
+PRODUCT_PACKAGES += \
+    mtk_plpath_utils \
+    mtk_plpath_utils.recovery
+
+# Keystore
+PRODUCT_PACKAGES += \
+    android.system.keystore2
+
+
+# Keymint
+PRODUCT_PACKAGES += \
+    android.hardware.security.keymint \
+    android.hardware.security.secureclock \
+    android.hardware.security.sharedsecret
+
+# Drm
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.4
 
 # Keymaster
 PRODUCT_PACKAGES += \
