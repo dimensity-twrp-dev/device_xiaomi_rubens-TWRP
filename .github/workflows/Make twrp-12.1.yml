@@ -65,6 +65,7 @@ jobs:
         repopick 5639
         repopick 5653
         repopick 5689
+        repopick 5693
     - name: Clone Device Tree
       run: |
         cd ${GITHUB_WORKSPACE}/workspace
