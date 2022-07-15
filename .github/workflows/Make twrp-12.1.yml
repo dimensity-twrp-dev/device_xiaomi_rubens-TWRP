@@ -61,9 +61,8 @@ jobs:
         source build/envsetup.sh
         repopick 5405
         repopick 5540
-        repopick 5493
         repopick 5639
-        repopick 5653
+        repopick 5691
         repopick 5689
         repopick 5693
         repopick 5724
