@@ -1,5 +1,3 @@
-import /microtrust.rc
-
 on init
     setprop sys.usb.configfs 1
     setprop sys.usb.controller "11201000.usb0"
@@ -77,6 +75,10 @@ service wait_for_keymaster /system/bin/wait_for_keymaster
     priority -20
     ioprio rt 0
     seclabel u:r:recovery:s0
+
+on property:vendor.sys.listeners.registered=true
+    start vendor.keymint-beanpod
+    start vendor.gatekeeper-1-0
 
 on boot
     start health-hal-2-1
