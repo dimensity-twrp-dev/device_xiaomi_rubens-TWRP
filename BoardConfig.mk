@@ -169,6 +169,8 @@ TW_INCLUDE_REPACKTOOLS := true
 
 # TWRP Configuration
 TW_FRAMERATE := 60
+TW_Y_OFFSET := 106
+TW_H_OFFSET := -106
 TW_THEME := portrait_hdpi
 TW_DEFAULT_LANGUAGE := zh_CN
 TW_INPUT_BLACKLIST := hbtp_vm
