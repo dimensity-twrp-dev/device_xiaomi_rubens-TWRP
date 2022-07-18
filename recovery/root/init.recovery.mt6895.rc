@@ -1,8 +1,12 @@
+import /microtrust.rc
+
 on init
     setprop sys.usb.configfs 1
     setprop sys.usb.controller "11201000.usb0"
     setprop sys.usb.ffs.aio_compat 1
     export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw
+    start hwservicemanager
+    setprop crypto.ready 1
 
 on fs
     install_keyring
@@ -17,10 +21,6 @@ on late-fs
 
     # Mount RW partitions which need run fsck
     mount_all /first_stage_ramdisk/fstab.mt6895 --late
-
-on fs && property:ro.debuggable=0
-    # distinguish USB shoulde connect or not, i.e. CDP vs SDP
-    # set charging free due to it wait for USB activation
 
 on post-fs
     start boot-hal-1-2
@@ -83,6 +83,25 @@ service wait_for_keymaster /system/bin/wait_for_keymaster
     ioprio rt 0
     seclabel u:r:recovery:s0
 
+-service keystore2 /system/bin/keystore2 /data/misc/keystore
+    class early_hal
+    user keystore
+    group keystore readproc log
+    seclabel u:r:recovery:s0
+
+service hwservicemanager /system/bin/hwservicemanager
+    user root
+    group root
+    disabled
+    onrestart setprop hwservicemanager.ready false
+    seclabel u:r:recovery:s0
+    
+service servicemanager /system/bin/servicemanager
+    user root
+    group root readproc
+    disabled
+    seclabel u:r:recovery:s0
+
 service vendor.gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     interface android.hardware.gatekeeper@1.0::IGatekeeper default
     user root
@@ -101,11 +120,35 @@ service vendor.mtk.vibrator-1-2 /vendor/bin/hw/vendor.mtk.hardware.vibrator@1.2-
     group root
     seclabel u:r:recovery:s0
 
-on property:vendor.sys.listeners.registered=true
+on property:crypto.ready=1
+    start vendor.keymint-beanpod
+
+on property:hwservicemanager.ready=true
     start vendor.keymint-beanpod
     start vendor.gatekeeper-1-0
 
-on boot
+on property:ro.crypto.state=unsupported
+    stop teei_daemon
+    stop vendor.keymint-beanpod
+    stop vendor.gatekeeper-1-0
+
+on property:ro.crypto.state=unencrypted
+    stop teei_daemon
+    stop vendor.keymint-beanpod
+    stop vendor.gatekeeper-1-0
+
+on property:twrp.decrypt.done=true
+    stop teei_daemon
+    stop vendor.keymint-beanpod
+    stop vendor.gatekeeper-1-0
+
+on property:crypto.ready=0
+    stop teei_daemon
+    stop vendor.keymint-beanpod
+    stop vendor.gatekeeper-1-0
+    stop servicemanager
+
+    on boot
     start health-hal-2-1
     start vendor.mtk.vibrator-1-2
     setprop sys.usb.config adb
