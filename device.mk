@@ -20,9 +20,12 @@ PRODUCT_SHIPPING_API_LEVEL := 31
 # Dynamic
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# A/B
+# Virtual A/B
 ENABLE_VIRTUAL_AB := true
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+
+# SDCard replacement functionality
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS := \
@@ -36,8 +39,7 @@ AB_OTA_PARTITIONS := \
     vbmeta \
     vbmeta_system \
     vbmeta_vendor
-    
-    
+
 # Update engine
 PRODUCT_PACKAGES += \
     checkpoint_gc \
@@ -72,7 +74,6 @@ PRODUCT_PACKAGES += \
 # Keystore
 PRODUCT_PACKAGES += \
     android.system.keystore2
-
 
 # Keymint
 PRODUCT_PACKAGES += \
