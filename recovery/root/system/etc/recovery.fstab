@@ -1,0 +1,19 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+#<src>                                              <mnt_point>           <type>   <mnt_flags and options>                                         <fs_mgr_flags>
+system                                              /system               erofs    ro                                                              wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+system                                              /system               ext4     ro                                                              wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+vendor                                              /vendor               erofs    ro                                                              wait,slotselect,avb,logical,first_stage_mount
+vendor                                              /vendor               ext4     ro                                                              wait,slotselect,avb,logical,first_stage_mount
+product                                             /product              erofs    ro                                                              wait,slotselect,avb,logical,first_stage_mount
+product                                             /product              ext4     ro                                                              wait,slotselect,avb,logical,first_stage_mount
+odm                                                 /odm                  erofs    ro                                                              wait,slotselect,avb,logical,first_stage_mount
+odm                                                 /odm                  ext4     ro                                                              wait,slotselect,avb,logical,first_stage_mount
+/dev/block/by-name/metadata                         /metadata             ext4     noatime,nosuid,nodev,discard                                    wait,check,formattable
+/dev/block/platform/bootdevice/by-name/md_udc       /metadata             ext4     noatime,nosuid,nodev,discard                         wait,check,formattable
+/dev/block/by-name/persist                          /mnt/vendor/persist   ext4     nosuid,nodev,noatime,barrier=1                       wait
+/dev/block/by-name/userdata                         /data                 f2fs     noatime,nosuid,nodev,discard,noflush_merge,fsync_mode=nobarrier,reserve_root=134217,resgid=1065,checkpoint_merge,gc_merge,inlinecrypt wait,check,formattable,quota,latemount,resize,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,fsverity
+/dev/block/by-name/misc                             /misc                 emmc     defaults                                                        defaults
+/dev/block/by-name/boot                             /boot                 emmc     defaults                                                        first_stage_mount,nofail,slotselect

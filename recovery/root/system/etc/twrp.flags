@@ -1,0 +1,54 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+#<mnt_point>        <type>    <device>                                                              <mnt_flags and options>
+/metadata           ext4      /dev/block/by-name/metadata                                           flags=display="metadata";backup=1
+/data               f2fs      /dev/block/by-name/userdata                                           flags=fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption
+/boot               emmc      /dev/block/by-name/boot                                               flags=display="boot";slotselect;backup=1;flashimg=1
+/dtbo               emmc      /dev/block/by-name/dtbo                                               flags=display="dtbo";backup=1
+/vendor_boot        emmc      /dev/block/by-name/vendor_boot                                        flags=display="vendor_boot";slotselect;backup=1;flashimg=1
+/vbmeta             emmc      /dev/block/by-name/vbmeta                                             flags=display="vbmeta";backup=1;flashimg=1
+/vbmeta_system      emmc      /dev/block/by-name/vbmeta_system                                      flags=display="vbmeta_system";slotselect;backup=1;flashimg=1
+/vbmeta_vendor      emmc      /dev/block/by-name/vbmeta_vendor                                      flags=display="vbmeta_vendor";slotselect;backup=1;flashimg=1
+
+/boot_para          emmc      /dev/block/by-name/boot_para                                          flags=display="boot_para"
+/logo               emmc      /dev/block/by-name/logo                                               flags=display="logo";backup=1
+/misc               emmc      /dev/block/by-name/misc                                               flags=display="misc";backup=1;flashimg=1
+/para               emmc      /dev/block/by-name/para                                               flags=display="para"
+
+/persist            ext4      /dev/block/by-name/persist                                            flags=display="persist"
+/persist_image      emmc      /dev/block/by-name/persist                                            flags=display="persist";backup=1;flashimg=1
+
+/rescue             ext4      /dev/block/by-name/rescue                                             flags=display="rescue"
+/protect_f          ext4      /dev/block/protect1                                                   flags=display="protect_f"
+/protect_s          ext4      /dev/block/protect2                                                   flags=display="protect_s"
+/nvdata             ext4      /dev/block/nvdata                                                     flags=display="nvdata"
+/nvcfg              ext4      /dev/block/nvcfg                                                      flags=display="nvcfg"
+/audio_dsp          emmc      /dev/block/by-name/audio_dsp                                          flags=display="audio_dsp"
+/otp                emmc      /dev/block/by-name/otp                                                flags=display="otp"
+/persistent         emmc      /dev/block/by-name/frp                                                flags=display="persistent"
+/nvram              emmc      /dev/block/by-name/nvram                                              flags=display="nvram"
+/proinfo            emmc      /dev/block/by-name/proinfo                                            flags=display="proinfo"
+/bootloader         emmc      /dev/block/by-name/lk                                                 flags=display="bootloader"
+/bootloader2        emmc      /dev/block/by-name/lk2                                                flags=display="bootloader2"
+/gz1                emmc      /dev/block/by-name/gz1                                                flags=display="gz1"
+/gz2                emmc      /dev/block/by-name/gz2                                                flags=display="gz2"
+/expdb              emmc      /dev/block/by-name/expdb                                              flags=display="expdb"
+/seccfg             emmc      /dev/block/by-name/seccfg                                             flags=display="seccfg"
+/tee1               emmc      /dev/block/by-name/tee1                                               flags=display="tee1"
+/tee2               emmc      /dev/block/by-name/tee2                                               flags=display="tee2"
+/mcupm_1            emmc      /dev/block/by-name/mcupm_1                                            flags=display="mcupm_1"
+/mcupm_2            emmc      /dev/block/by-name/mcupm_2                                            flags=display="mcupm_2"
+/scp1               emmc      /dev/block/by-name/scp1                                               flags=display="scp1"
+/scp2               emmc      /dev/block/by-name/scp2                                               flags=display="scp2"
+/sspm_1             emmc      /dev/block/by-name/sspm_1                                             flags=display="sspm_1"
+/sspm_2             emmc      /dev/block/by-name/sspm_2                                             flags=display="sspm_1"
+/dpm_1              emmc      /dev/block/by-name/dpm_1                                              flags=display="dpm_1"
+/dpm_2              emmc      /dev/block/by-name/dpm_2                                              flags=display="dpm_2"
+/md1img             emmc      /dev/block/by-name/md1img                                             flags=display="md1arm7"
+/spmfw              emmc      /dev/block/by-name/spmfw                                              flags=display="spmfw"
+/pi_img             emmc      /dev/block/by-name/pi_img                                             flags=display="pi_img"
+
+# removable
+/usb-otg            auto      /dev/block/sdd1                                                       flags=display="usb-otg";storage;wipeingui;removable;fsflags="utf8"
