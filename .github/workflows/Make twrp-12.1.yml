@@ -59,22 +59,18 @@ jobs:
       run: |
         cd ${GITHUB_WORKSPACE}/workspace
         source build/envsetup.sh
-        repopick 5405
-        repopick 5540
         repopick 5639
         repopick 5675
-        repopick 5689
         repopick 5690
         repopick 5691
-        repopick 5693
         repopick 5694
         repopick 5696
-        repopick 5724
         repopick 5743
+        repopick 5832
     - name: Clone Device Tree
       run: |
         cd ${GITHUB_WORKSPACE}/workspace
-        git clone https://github.com/YuKongA/device_xiaomi_rubens-TWRP.git -b twrp-12.1_5.10.101 ./device/xiaomi/rubens
+        git clone https://github.com/YuKongA/device_xiaomi_rubens-TWRP.git -b twrp-12.1 ./device/xiaomi/rubens
     - name: Building
       run: |
         cd ${GITHUB_WORKSPACE}/workspace
