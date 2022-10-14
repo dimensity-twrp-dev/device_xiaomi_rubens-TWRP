@@ -187,6 +187,7 @@
 30085 ssm_user_unlocked (userId|1|5)
 30086 ssm_user_stopping (userId|1|5)
 30087 ssm_user_stopped (userId|1|5)
+30099 event_statusbar_state (type|1)
 31000 wm_no_surface_memory (Window|3),(PID|1|5),(Operation|3)
 31001 wm_task_created (TaskId|1|5),(RootTaskId|1|5)
 31002 wm_task_moved (TaskId|1|5),(ToTop|1),(Index|1)
