@@ -11,6 +11,7 @@
         manifest_log.xml
         manifest_mdmonitor.xml
         manifest_aee.xml
+        manifest_boot.xml
         manifest_netdagent.xml
         manifest_tetheroffloadservice.xml
         manifest_pq.xml
@@ -31,6 +32,8 @@
         manifest_vendor.xiaomi.hardware.vsimapp.xml
         manifest_vendor.xiaomi.hardware.mfidoca.xml
         manifest_displayfeature.xml
+        manifest.xml
+        manifest.xml
         manifest.xml
 -->
 <manifest version="4.0" type="device" target-level="6">
@@ -73,6 +76,16 @@
             <instance>default</instance>
         </interface>
         <fqname>@2.1::IBluetoothAudioProvidersFactory/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.boot</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IBootControl</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IBootControl/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.camera.provider</name>
@@ -634,6 +647,26 @@
             <instance>default</instance>
         </interface>
         <fqname>@1.0::IVSIMService/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.xiaomi.hidl.minet</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IMiNetService</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IMiNetService/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.xiaomi.hidl.miwill</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IMiwillService</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IMiwillService/default</fqname>
     </hal>
     <sepolicy>
         <version>31.0</version>

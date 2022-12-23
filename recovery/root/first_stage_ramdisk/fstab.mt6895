@@ -5,9 +5,9 @@
 # 1 "<command line>" 1
 # 1 "<built-in>" 2
 # 1 "vendor/mediatek/proprietary/hardware/fstab/mt6895/fstab.in.mt6895" 2
-# 151 "vendor/mediatek/proprietary/hardware/fstab/mt6895/fstab.in.mt6895"
-system /system erofs ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
-system /system ext4 ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
+# 173 "vendor/mediatek/proprietary/hardware/fstab/mt6895/fstab.in.mt6895"
+system /system erofs ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+system /system ext4 ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
 
 vendor /vendor erofs ro wait,slotselect,avb,logical,first_stage_mount
 vendor /vendor ext4 ro wait,slotselect,avb,logical,first_stage_mount
@@ -15,10 +15,43 @@ vendor /vendor ext4 ro wait,slotselect,avb,logical,first_stage_mount
 
 product /product erofs ro wait,slotselect,avb,logical,first_stage_mount
 product /product ext4 ro wait,slotselect,avb,logical,first_stage_mount
+mi_ext /mnt/vendor/mi_ext erofs ro wait,slotselect,avb=vbmeta,logical,first_stage_mount,nofail
+mi_ext /mnt/vendor/mi_ext ext4 ro wait,slotselect,avb=vbmeta,logical,first_stage_mount,nofail
+/mnt/vendor/mi_ext /mi_ext none ro,bind wait,nofail
 
+overlay /product/overlay overlay ro,lowerdir=/mnt/vendor/mi_ext/product/overlay/:/product/overlay check,nofail
+overlay /product/app overlay ro,lowerdir=/mnt/vendor/mi_ext/product/app/:/product/app check,nofail
+overlay /product/priv-app overlay ro,lowerdir=/mnt/vendor/mi_ext/product/priv-app/:/product/priv-app check,nofail
+overlay /product/lib overlay ro,lowerdir=/mnt/vendor/mi_ext/product/lib/:/product/lib check,nofail
+overlay /product/lib64 overlay ro,lowerdir=/mnt/vendor/mi_ext/product/lib64/:/product/lib64 check,nofail
+overlay /product/bin overlay ro,lowerdir=/mnt/vendor/mi_ext/product/bin/:/product/bin check,nofail
+overlay /product/framework overlay ro,lowerdir=/mnt/vendor/mi_ext/product/framework/:/product/framework check,nofail
+overlay /product/media overlay ro,lowerdir=/mnt/vendor/mi_ext/product/media/:/product/media check,nofail
+overlay /product/opcust overlay ro,lowerdir=/mnt/vendor/mi_ext/product/opcust/:/product/opcust check,nofail
+overlay /product/data-app overlay ro,lowerdir=/mnt/vendor/mi_ext/product/data-app/:/product/data-app check,nofail
+overlay /product/etc/sysconfig overlay ro,lowerdir=/mnt/vendor/mi_ext/product/etc/sysconfig/:/product/etc/sysconfig check,nofail
+overlay /product/etc/permissions overlay ro,lowerdir=/mnt/vendor/mi_ext/product/etc/permissions/:/product/etc/permissions check,nofail
+overlay /system/app overlay ro,lowerdir=/mnt/vendor/mi_ext/system/app/:/product/pangu/system/app/:/system/app check,nofail
+overlay /system/priv-app overlay ro,lowerdir=/mnt/vendor/mi_ext/system/priv-app/:/product/pangu/system/priv-app/:/system/priv-app check,nofail
+overlay /system/framework overlay ro,lowerdir=/product/pangu/system/framework/:/system/framework check,nofail
+overlay /system/etc/sysconfig overlay ro,lowerdir=/mnt/vendor/mi_ext/system/etc/sysconfig/:/system/etc/sysconfig check,nofail
+overlay /system/etc/permissions overlay ro,lowerdir=/mnt/vendor/mi_ext/system/etc/permissions/:/product/pangu/system/etc/permissions/:/system/etc/permissions check,nofail
+
+
+
+
+
+system_ext /system_ext erofs ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+system_ext /system_ext ext4 ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
 
 odm /odm erofs ro wait,slotselect,avb,logical,first_stage_mount
 odm /odm ext4 ro wait,slotselect,avb,logical,first_stage_mount
+
+
+vendor_dlkm /vendor_dlkm erofs ro wait,slotselect,avb,logical,first_stage_mount
+
+
+odm_dlkm /odm_dlkm erofs ro wait,slotselect,avb,logical,first_stage_mount
 
 
 /dev/block/by-name/metadata /metadata ext4 noatime,nosuid,nodev,discard wait,check,formattable,first_stage_mount

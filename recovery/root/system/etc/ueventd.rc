@@ -12,6 +12,10 @@ subsystem drm
     devname uevent_devpath
     dirname /dev/dri
 
+subsystem mi_display
+    devname uevent_devpath
+    dirname /dev/mi_display
+
 subsystem input
     devname uevent_devpath
     dirname /dev/input
@@ -50,6 +54,15 @@ subsystem dma_heap
 # kms driver for drm based gpu
 /dev/dri/*                0666   root       graphics
 
+# mi display feature
+/dev/mi_display/*         0666   root       graphics
+
+# mius iio devices
+/dev/iio:device*                                        0660   system     system
+/sys/bus/iio/devices/iio:device* buffer/enable                  0600 system system
+/sys/bus/iio/devices/iio:device* scan_elements/in_proximity_en  0600 system system
+/sys/bus/iio/devices/iio:device* scan_elements/in_timestamp_en  0600 system system
+
 # these should not be world writable
 /dev/uhid                 0660   uhid       uhid
 /dev/uinput               0660   uhid       uhid
@@ -67,9 +80,8 @@ subsystem dma_heap
 # CDMA radio interface MUX
 /dev/ppp                  0660   radio      vpn
 
-# Virtualisation is managed by Virt Manager
-/dev/kvm                  0600   virtmanager root
-/dev/vhost-vsock          0600   virtmanager root
+/dev/kvm                  0600   system     system
+/dev/vhost-vsock          0600   system	    system
 
 # sysfs properties
 /sys/devices/platform/trusty.*      trusty_version        0440  root   log
