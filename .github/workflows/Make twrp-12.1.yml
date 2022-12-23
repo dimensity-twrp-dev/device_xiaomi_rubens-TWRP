@@ -67,7 +67,7 @@ jobs:
     - name: Clone Device Tree
       run: |
         cd ${GITHUB_WORKSPACE}/workspace
-        git clone https://github.com/YuKongA/device_xiaomi_rubens-TWRP.git -b twrp-12.1 ./device/xiaomi/rubens
+        git clone https://github.com/YuKongA/device_xiaomi_rubens-TWRP.git -b twrp-13 ./device/xiaomi/rubens
     - name: Building
       run: |
         cd ${GITHUB_WORKSPACE}/workspace
@@ -77,5 +77,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: rubens_twrp-12.1
+        name: rubens_twrp-13
         path: workspace/out/target/product/rubens/vendor_boot.img
