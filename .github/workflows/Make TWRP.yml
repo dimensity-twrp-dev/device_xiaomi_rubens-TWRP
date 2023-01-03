@@ -1,28 +1,26 @@
-name: Make twrp-12.1
+name: Make TWRP
 
 on:
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
     - name: Remove Useless Package
       run: |
         docker rmi `docker images -q`
         sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/sudo apt/sources.list.d
-        sudo apt -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
+        sudo apt -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mysql* php*
         sudo apt -y autoremove --purge
         sudo apt -y autoclean
         sudo apt clean
     - name: Maximize Build Space
       uses: easimon/maximize-build-space@master
       with:
-        root-reserve-mb: 1024
-        swap-size-mb: 10240
+        swap-size-mb: 8192
         remove-dotnet: 'true'
-        temp-reserve-mb: 1024
         remove-android: 'true'
         remove-haskell: 'true'
 
@@ -30,9 +28,7 @@ jobs:
       uses: actions/checkout@main
 
     - name: Set Variables
-      run: |
-        echo "::set-output name=date::$(date +%F)"
-      id: var
+      run: echo "{name}=date::$(date +%F)" >> $GITHUB_OUTPUT
 
     - name: Prepare Environment
       run: |
@@ -43,6 +39,7 @@ jobs:
         cd scripts
         sudo bash setup/android_build_env.sh
         sudo bash setup/install_android_sdk.sh || true
+
     - name: Init Repo
       run: |
         mkdir ${GITHUB_WORKSPACE}/workspace
@@ -50,11 +47,13 @@ jobs:
         git config --global user.name "Hikaru's Action-Build-Bot"
         git config --global user.email "Android@teio.tk"
         repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
+
     - name: Repo Sync
       run: |
         cd ${GITHUB_WORKSPACE}/workspace
         repo sync -j$(nproc --all)
         ls -al
+
     - name: Repopick Patches
       run: |
         cd ${GITHUB_WORKSPACE}/workspace
@@ -64,16 +63,19 @@ jobs:
         repopick 5690
         repopick 5691
         repopick 5743
+
     - name: Clone Device Tree
       run: |
         cd ${GITHUB_WORKSPACE}/workspace
         git clone https://github.com/YuKongA/device_xiaomi_rubens-TWRP.git -b twrp-13 ./device/xiaomi/rubens
+
     - name: Building
       run: |
         cd ${GITHUB_WORKSPACE}/workspace
         source build/envsetup.sh
         lunch twrp_rubens-eng
         mka vendorbootimage -j$(nproc --all)
+
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
