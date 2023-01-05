@@ -2,7 +2,7 @@
     Input:
         manifest.xml
 -->
-<manifest version="5.0" type="framework">
+<manifest version="4.0" type="framework">
     <hal format="hidl" max-level="6">
         <name>android.frameworks.displayservice</name>
         <transport>hwbinder</transport>
