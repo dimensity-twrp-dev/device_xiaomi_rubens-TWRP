@@ -63,6 +63,7 @@ jobs:
         repopick 5690
         repopick 5691
         repopick 5743
+        repopick 6217
 
     - name: Clone Device Tree
       run: |
