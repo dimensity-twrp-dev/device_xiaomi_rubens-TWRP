@@ -61,5 +61,5 @@ mka vendorbootimage -j$(nproc --all)
 ## To use it:
 
 ```
-fastboot flash recovery out/target/product/rubens/recovery.img
+fastboot flash vendor_boot out/target/product/rubens/vendor_boot.img
 ```
