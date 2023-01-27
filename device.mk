@@ -20,9 +20,6 @@ DEVICE_PATH := device/xiaomi/rubens
 PRODUCT_SHIPPING_API_LEVEL := 31
 PRODUCT_TARGET_VNDK_VERSION := 31
 
-# Dynamic
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
 # A/B
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
@@ -32,8 +29,10 @@ AB_OTA_PARTITIONS += \
     product \
     vendor \
     odm \
+    odm_dlkm \
     vbmeta \
     vendor_boot \
+    vendor_dlkm \
     vbmeta_system \
     vbmeta_vendor
     
@@ -55,7 +54,14 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_vendor=erofs \
     POSTINSTALL_OPTIONAL_vendor=true
 
-# bootctrl
+# Additional Target Libraries
+TARGET_RECOVERY_DEVICE_MODULES += \
+    android.hardware.keymaster@4.1
+
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.1.so
+
+# Bootctrl
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-mtkimpl \
     android.hardware.boot@1.2-mtkimpl.recovery
@@ -63,41 +69,40 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     bootctrl
 
-# health
+# Dynamic
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
+# Drm
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.4
+
+# Health
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service
 
-# mtk plpath utils
+# Keymaster
 PRODUCT_PACKAGES += \
-    mtk_plpath_utils \
-    mtk_plpath_utils.recovery
+    android.hardware.keymaster@4.1
 
-# keystore2
-PRODUCT_PACKAGES += \
-    android.system.keystore2
-
-# keymint
+# Keymint
 PRODUCT_PACKAGES += \
     android.hardware.security.keymint \
     android.hardware.security.secureclock \
     android.hardware.security.sharedsecret
 
-# drm
+# Keystore2
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.4
+    android.system.keystore2
 
-# keymaster
+# Mtk plpath utils
 PRODUCT_PACKAGES += \
-    android.hardware.keymaster@4.1
+    mtk_plpath_utils \
+    mtk_plpath_utils.recovery
 
-# otacert
+# Otacert
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     $(DEVICE_PATH)/security/miui_releasekey
 
-# Additional Target Libraries
-TARGET_RECOVERY_DEVICE_MODULES += \
-    android.hardware.keymaster@4.1
-
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.1.so
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
