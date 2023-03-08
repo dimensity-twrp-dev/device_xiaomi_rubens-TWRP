@@ -67,7 +67,8 @@ jobs:
     - name: Clone Device Tree
       run: |
         cd ${GITHUB_WORKSPACE}/workspace
-        git clone https://github.com/YuKongA/device_xiaomi_rubens-TWRP.git -b twrp-12.1_A13 ./device/xiaomi/rubens
+        #git clone https://github.com/YuKongA/device_xiaomi_rubens-TWRP.git -b twrp-12.1_A13 ./device/xiaomi/rubens
+        git clone https://github.com/twrpdtgen/android_device_xiaomi_plato.git -b twrp-12.1_A13 ./device/xiaomi/plato
 
     - name: Building
       run: |
